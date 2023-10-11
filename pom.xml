@@ -10,7 +10,7 @@
     </parent>
     <groupId>ku.cs</groupId>
     <artifactId>Backend-mailsender</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>Backend-mailsender</name>
     <description>Backend-mailsender</description>
     <properties>
