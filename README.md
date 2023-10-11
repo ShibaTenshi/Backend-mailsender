@@ -1,6 +1,6 @@
 # Rest APIs
 
-## Send OPT Mail - request with body
+## Send OTP Mail - request with body
 
 {
 
