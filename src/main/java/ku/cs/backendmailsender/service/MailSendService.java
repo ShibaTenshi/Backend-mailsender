@@ -25,7 +25,6 @@ public class MailSendService {
                     ",\n\nYou can copy this code for your confirmation." +
                     "\n\n" + mail.getOtp() +
                     "\n\nThis code will expire after 10 minutes or if you request a new code. \n" +
-                    "\n" +
                     "Thanks, \n" +
                     "\n" +
                     "ShibaQueue Team ");
