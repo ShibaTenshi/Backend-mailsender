@@ -1,16 +1,34 @@
 pipeline {
      agent any
+     environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+     }
      stages {
-          stage('Build') {
+          stage('Mvn Build') {
                steps {
                     sh 'mvn clean'
                     sh 'mvn package -DskipTests'
                }
           }
-          stage('Deploy') {
-               steps {
-                    sh 'docker build -t oyashiz/shibaqueue-mail .'
-               }
+          stage('Docker Build') {
+                         steps {
+                              sh 'docker build -t oyashiz/shibaqueue-mail .'
+                         }
+                    }
+          stage('Docker Login') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
           }
+          stage('Docker Push') {
+                      steps {
+                          sh 'docker push oyashiz/shibaqueue-mail'
+                      }
+          }
+     }
+     post {
+        always {
+            sh 'docker logout'
+        }
      }
 }
