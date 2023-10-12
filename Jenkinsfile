@@ -1,16 +1,9 @@
 pipeline {
-     agent {
-          docker {
-               image 'maven:3-amazoncorretto-17'
-               args '-p 5041:5041'
-          }
-     }
-     environment {
-          HOME = '.'
-     }
+     agent any
      stages {
           stage('Build') {
                steps {
+                    sh 'mvn clean'
                     sh 'mvn package -DskipTests'
                }
           }
