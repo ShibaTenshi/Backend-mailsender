@@ -3,6 +3,10 @@ pipeline {
      environment {
         DOCKERHUB_CREDENTIALS = credentials('docker-hub')
      }
+     parameters {
+         string(name: 'imageName', defaultValue: 'oyashiz/shibaqueue-mail', description: 'Docker image name')
+     }
+
      stages {
           stage('Mvn Build') {
                steps {
@@ -12,8 +16,8 @@ pipeline {
           }
           stage('Docker Build') {
                          steps {
-                              sh 'docker image rm oyashiz/shibaqueue-mail -f'
-                              sh 'docker build -t oyashiz/shibaqueue-mail .'
+                              sh 'docker image rm ${imageName} -f'
+                              sh 'docker build -t ${imageName} .'
                          }
                     }
           stage('Docker Login') {
@@ -23,7 +27,8 @@ pipeline {
           }
           stage('Docker Push') {
                       steps {
-                          sh 'docker push oyashiz/shibaqueue-mail'
+                          sh 'docker push ${imageName}'
+                          sh 'docker image rm ${imageName} -f'
                       }
           }
      }
