@@ -12,6 +12,7 @@ pipeline {
           }
           stage('Docker Build') {
                          steps {
+                              sh 'docker image rm oyashiz/shibaqueue-mail -f'
                               sh 'docker build -t oyashiz/shibaqueue-mail .'
                          }
                     }
