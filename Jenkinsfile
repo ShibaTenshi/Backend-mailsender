@@ -14,11 +14,6 @@ pipeline {
                     sh 'mvn package -DskipTests'
                }
           }
-          stage('Test') {
-               steps {
-                    sh 'testing...'
-               }
-          }
           stage('Deploy') {
                steps {
                     sh 'docker build -t oyashiz/shibaqueue-mail .'
