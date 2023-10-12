@@ -27,7 +27,7 @@ pipeline {
           }
           stage('Deploy') {
                steps {
-                    sh 'java -jar ./target/Backend-mailsender-0.0.1.jar'
+                    sh 'docker build -t oyashiz/shibaqueue-mail .'
                }
           }
      }
