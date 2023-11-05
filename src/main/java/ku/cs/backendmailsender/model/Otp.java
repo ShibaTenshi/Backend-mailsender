@@ -7,4 +7,5 @@ public class Otp {
     private String email;
     private String username;
     private String otp;
+    private String refer;
 }

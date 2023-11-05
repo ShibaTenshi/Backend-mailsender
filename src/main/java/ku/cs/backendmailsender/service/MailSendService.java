@@ -25,7 +25,8 @@ public class MailSendService {
 
             helper.setText("Hello " + mail.getUsername() +
                     ",\n\nYou can copy this code for your confirmation." +
-                    "\n\n" + mail.getOtp() +
+                    "\n\n->" + mail.getOtp() +
+                    "\n\nRefer code is " + mail.getRefer() +
                     "\n\nThis code will expire after 10 minutes or if you request a new code. \n" +
                     "Thanks, \n" +
                     "\n" +
@@ -45,8 +46,7 @@ public class MailSendService {
                     ",\n\nRestaurant Name: " + mail.getRestaurantName() +
                     "\n\nYour restaurant request is not approved" +
                     "\n\nReason: " + mail.getReason() +
-                    "\n" +
-                    "Thanks, \n" +
+                    "\n\nThanks, \n" +
                     "\n" +
                     "ShibaQueue Team ");
         };
@@ -65,8 +65,7 @@ public class MailSendService {
                     "\n\nYour restaurant has been approved" +
                     "\n\nUsername: " + mail.getUsername() +
                     "\nPassword: " + mail.getPassword() +
-                    "\n" +
-                    "Thanks, \n" +
+                    "\n\nThanks, \n" +
                     "\n" +
                     "ShibaQueue Team ");
         };
