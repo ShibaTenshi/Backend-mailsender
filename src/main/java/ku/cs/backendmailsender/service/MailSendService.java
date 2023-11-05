@@ -58,7 +58,7 @@ public class MailSendService {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
             helper.setFrom(new InternetAddress("no-reply@doksakura.com", "ShibaQueue Team"));
             helper.setTo(mail.getEmail());
-            helper.setSubject("Unapproved restaurant");
+            helper.setSubject("!! Approved restaurant");
 
             helper.setText("Hello " + mail.getUsername() +
                     ",\n\nRestaurant Name: " + mail.getRestaurantName() +
