@@ -1,6 +1,7 @@
 package ku.cs.backendmailsender.service;
 
 import jakarta.mail.internet.InternetAddress;
+import ku.cs.backendmailsender.model.MailDeleteRestaurantBody;
 import ku.cs.backendmailsender.model.Otp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -25,6 +26,25 @@ public class MailSendService {
                     ",\n\nYou can copy this code for your confirmation." +
                     "\n\n" + mail.getOtp() +
                     "\n\nThis code will expire after 10 minutes or if you request a new code. \n" +
+                    "Thanks, \n" +
+                    "\n" +
+                    "ShibaQueue Team ");
+        };
+        mailSender.send(preparator);
+    }
+
+    public void sendMailDelete(MailDeleteRestaurantBody mail) throws MailException {
+        MimeMessagePreparator preparator = (mimeMessage) -> {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+            helper.setFrom(new InternetAddress("no-reply@doksakura.com", "ShibaQueue Team"));
+            helper.setTo(mail.getEmail());
+            helper.setSubject("Unapproved restaurant");
+
+            helper.setText("Hello " + mail.getUsername() +
+                    ",\n\nRestaurant Name: " + mail.getRestaurantName() +
+                    "\n\nYour restaurant request is not approved" +
+                    "\n\nReason: " + mail.getReason() +
+                    "\n" +
                     "Thanks, \n" +
                     "\n" +
                     "ShibaQueue Team ");
